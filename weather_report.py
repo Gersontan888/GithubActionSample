@@ -78,6 +78,33 @@ def get_daily_love():
     daily_love = sentence
     return daily_love
 
+def get_daily_love():
+    try:
+        url = "https://api.lovelive.tools/api/SweetNothings/Serialization/Json"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+        r = requests.get(url, headers=headers, timeout=10)
+        r.raise_for_status() # 捕获404/500等HTTP错误
+        # 接口返回为空时直接返回默认文案
+        if not r.text.strip():
+            return "今天也要好好生活，平安顺遂～"
+        all_dict = json.loads(r.text)
+        # 这里改成你提取情话的逻辑
+        sentence = all_dict['returnObj'][0]
+        daily_love = sentence
+             return daily_love
+        #love_text = all_dict.get("content", "温柔且坚定，万事皆可期")
+        #return love_text
+    except requests.exceptions.RequestException as e:
+        # 网络超时、链接错误、服务器异常统一兜底
+        print(f"情话接口请求失败：{e}")
+        return "今日平安喜乐，万事顺心"
+    except json.JSONDecodeError as e:
+        # JSON解析失败兜底
+        print(f"情话接口返回非标准JSON：{e}，返回内容：{r.text[:200]}")
+        return "好好照顾自己，今天也是美好的一天"
+
 
 def send_weather(access_token, weather):
     # touser 就是 openID
