@@ -67,7 +67,7 @@ def get_access_token():
     access_token = response.get('access_token')
     return access_token
 
-
+'''
 def get_daily_love():
     # 每日一句情话
     url = "https://api.lovelive.tools/api/SweetNothings/Serialization/Json"
@@ -77,6 +77,7 @@ def get_daily_love():
     sentence = all_dict['returnObj'][0]
     daily_love = sentence
     return daily_love
+  '''  
 
 def get_daily_love():
     try:
