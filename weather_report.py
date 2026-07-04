@@ -94,7 +94,7 @@ def get_daily_love():
         # 这里改成你提取情话的逻辑
         sentence = all_dict['returnObj'][0]
         daily_love = sentence
-             return daily_love
+            return daily_love
         #love_text = all_dict.get("content", "温柔且坚定，万事皆可期")
         #return love_text
     except requests.exceptions.RequestException as e:
