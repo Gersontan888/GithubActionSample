@@ -72,6 +72,7 @@ def get_daily_love():
     # 每日一句情话
     url = "https://api.lovelive.tools/api/SweetNothings/Serialization/Json"
     r = requests.get(url)
+    print("接口返回文本：", repr(r.text))，看
     all_dict = json.loads(r.text)
     sentence = all_dict['returnObj'][0]
     daily_love = sentence
